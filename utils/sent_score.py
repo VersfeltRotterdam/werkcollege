@@ -2,7 +2,7 @@ import requests
 
 def _sent_score(names, score, route):
     assert names != None, f"Please fillout your name(s)."
-    
+    assert names != "", f"Please fillout your name(s)."
     assert score != None, f"Please send a score, no scoure was found"
     assert route != None, f"Please send a route, no route was found"
     
