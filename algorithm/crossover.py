@@ -2,8 +2,7 @@ import random
 import numpy as np
 
 def _crossover(parents):   
-    parent1 = parents[0]
-    parent2 = parents[1]
+    parent1, parent2 = parents[0], parents[1]
 
     # use a random mask to select genes from the first parent
     mask = np.zeros(len(parent1), dtype=int)

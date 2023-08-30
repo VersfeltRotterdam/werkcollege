@@ -13,7 +13,7 @@ def _improve(chromosome, distances):
         # Let the gene corresponding to random_index be v, then let v be preceeded by u and succeeded by w.
         # Thus, when v is removed from its current position: the connections between (u,v) and (v,w) need to be removed.
         # Hereafter, v will be inserted into a new location. For instance between the genes x and y.
-        # hus (x,y) will be removed and (x,v) and (v,y) will be added
+        # Thus (x,y) will be removed and (x,v) and (v,y) will be added
 
         # if the random_index is <= 0, then its predecessor is the origin
         index_u = random_index - 1 if random_index > 0 else  0
@@ -22,7 +22,7 @@ def _improve(chromosome, distances):
         index_w = random_index + 1 if random_index < (len(chromosome) - 1) else 0
 
         # the connections between (u,v) and (v,w) are removed, while (u,w) is added
-        cost_removal = -distances[index_u, random_index] - distances[random_index, index_w] + distances[index_u, index_w]
+        cost_removal = -distances[index_u][random_index] - distances[random_index][index_w] + distances[index_u][index_w]
 
         # evaluate the insertion of the random_index after the index
         # where index = -1 corresponds to inserting the random_index right after the starting point
@@ -33,7 +33,7 @@ def _improve(chromosome, distances):
             index_y = index + 1 if index < (len(chromosome) - 1) else 0
             
             # the connections between (x,v) and (v,y) are added, while (x,y) is removed
-            new_cost = distances[index_x, random_index] + distances[random_index, index_y] - distances[index_x, index_y]
+            new_cost = distances[index_x][random_index] + distances[random_index][index_y] - distances[index_x][index_y]
                       
             # if a cost improvement was detected, apply it and stop looking
             if (cost_removal + new_cost < 0):
